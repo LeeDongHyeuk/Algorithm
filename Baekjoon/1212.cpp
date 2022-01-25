@@ -18,8 +18,6 @@ int main() {
 		int n = s[i] - '0';
 
 		if (i == 0) {
-			string two = eight[n];
-
 			if (n == 1) cout << 1;
 			else if (n == 2) cout << 10;
 			else if (n == 3) cout << 11;
