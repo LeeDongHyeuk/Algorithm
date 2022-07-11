@@ -63,5 +63,51 @@ int main() {
 		int x1 = a[i].first;
 		int y1 = a[i].second;
 		if (garo[x1][y1] != 0 || garo[x1][y1 + 1] != 0) continue;
+		garo[x1][y1] = 1;
+		garo[x1][y1 + 1] = 2;
+		if (go()) {
+			if (ans == -1 || ans > 1) {
+				ans = 1;
+			}
+		}
+
+		for (int j = i + 1; j < len; j++) {
+			int x2 = a[j].first;
+			int y2 = a[j].second;
+			if (garo[x2][y2] != 0 || garo[x2][y2 + 1] != 0) continue;
+			garo[x2][y2] = 1;
+			garo[x2][y2 + 1] = 2;
+			if (go()) {
+				if (ans == -1 || ans > 2) {
+					ans = 2;
+				}
+			}
+
+			for (int k = j + 1; k < len; k++) {
+				int x3 = a[k].first;
+				int y3 = a[k].second;
+				if (garo[x3][y3] != 0 || garo[x3][y3 + 1] != 0) continue;
+				garo[x3][y3] = 1;
+				garo[x3][y3 + 1] = 2;
+				if (go()) {
+					if (ans == -1 || ans > 3) {
+						ans = 3;
+					}
+				}
+
+				garo[x3][y3] = 0;
+				garo[x3][y3 + 1] = 0;
+			}
+
+			garo[x2][y2] = 0;
+			garo[x2][y2 + 1] = 0;
+		}
+
+		garo[x1][y1] = 0;
+		garo[x1][y1 + 1] = 0;
 	}
+
+	cout << ans << '\n';
+
+	return 0;
 }
